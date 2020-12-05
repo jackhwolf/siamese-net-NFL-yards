@@ -42,6 +42,8 @@ class Experiment:
         if os.path.exists(path):
             data = pd.read_pickle(path)
             out = pd.concat((data, out))
+        else:
+            os.makedirs('Results', exist_ok=True)
         out.to_pickle(path)
         return
 
