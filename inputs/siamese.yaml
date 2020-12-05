@@ -14,4 +14,4 @@ h1: 10
 h2: 4
 lr: 1e-3
 wd: 1e-5
-tr_epochs: 1
+tr_epochs: 3

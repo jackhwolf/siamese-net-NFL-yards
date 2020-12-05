@@ -3,10 +3,11 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch import no_grad
 from torch import from_numpy
-from models.util import to_torch
+from models.util import to_torch, EarlyStopper
 
 offensive_cols = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 15, 16]
 defensive_cols = [0, 1, 6, 7, 8, 9, 14]
+stopper = EarlyStopper()
 
 class siamese(nn.Module):
 
@@ -39,6 +40,8 @@ class siamese(nn.Module):
             optimizer.step()
             closs = loss.item()
             print(i, closs, "\n=============")
+            if stopper(closs):
+                break
         return closs
 
     def forward(self, x):
