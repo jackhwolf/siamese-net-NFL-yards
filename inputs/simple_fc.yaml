@@ -1,0 +1,17 @@
+# name
+name: sample_experiment
+
+# data
+data_path: data/data_50p.csv
+task: multiclass
+brackets: [5, 10, 20]
+split: balanced_fillin
+tr_perc: 0.8
+
+# model
+model: simple_fc
+h1: 1000
+h2: 500
+lr: 1e-3
+wd: 1e-5
+tr_epochs: 1
