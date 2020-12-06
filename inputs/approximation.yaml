@@ -1,17 +1,17 @@
 # name
-name: siamese
+name: approx_siamese_approximation
 
 # data
 data_path: data/data_10p.csv
-task: binary
+task: approximation
 split: balanced_fillin
 tr_perc: 0.8
 
 # model
 model: siamese
-h1: 300
-h2: 50
+h1: 512
+h2: 256
 lr: 1e-3
 wd: 1e-5
-tr_epochs: 3
-combinatorial_func: binary
+tr_epochs: 30000
+combinatorial_func: approximation

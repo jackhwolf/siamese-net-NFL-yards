@@ -1,5 +1,5 @@
 # name
-name: siamese_binary_1205
+name: approx_siamese_bin_apx
 
 # data
 data_path: data/data_10p.csv
@@ -9,9 +9,9 @@ tr_perc: 0.8
 
 # model
 model: siamese
-h1: 128
-h2: 128
-lr: 1e-5
+h1: 512
+h2: 256
+lr: 1e-3
 wd: 1e-5
-tr_epochs: 5000
+tr_epochs: 30000
 combinatorial_func: approximation
