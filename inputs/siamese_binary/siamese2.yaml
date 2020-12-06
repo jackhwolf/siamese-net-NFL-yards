@@ -14,4 +14,4 @@ h2: 128
 lr: 1e-4
 wd: 1e-5
 tr_epochs: 5000
-combinatorial_func: binary
+combinatorial_func: approximation
