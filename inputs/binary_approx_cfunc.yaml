@@ -11,7 +11,7 @@ tr_perc: 0.8
 model: siamese
 h1: 512
 h2: 256
-lr: 1e-3
-wd: 1e-5
+lr: 1e-5
+wd: 1e-8
 tr_epochs: 30000
 combinatorial_func: binary
