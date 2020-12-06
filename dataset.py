@@ -61,11 +61,12 @@ class ExperimentData(ProcessedData):
         self.split = split
         self.tr_perc = float(kw.get('train_perc', 0.8))
         self.tr_vc = None
+        print(kw)
         self.possibly_threshold(**kw)
         self.possibly_bracket(**kw)
 
     def possibly_threshold(self, **kw):
-        if self.task != 'classification':
+        if self.task != 'binary':
             return
         self.threshold = float(kw.get('threshold', '5.0'))
         self.data[self.label] = (self.data[self.label] > self.threshold) * 2 - 1

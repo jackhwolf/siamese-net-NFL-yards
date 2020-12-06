@@ -1,8 +1,7 @@
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-from torch import no_grad
-from torch import from_numpy
+from torch import no_grad, from_numpy, sign
 from models.util import to_torch, EarlyStopper
 
 offensive_cols = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 15, 16]
@@ -11,7 +10,7 @@ stopper = EarlyStopper()
 
 class siamese(nn.Module):
 
-    def __init__(self, h1, h2, lr, wd, tr_epochs, **kw):
+    def __init__(self, h1, h2, lr, wd, tr_epochs, combinatorial_func, **kw):
         super().__init__()
         self.indims = 17
         self.h1 = int(h1) 
@@ -25,6 +24,7 @@ class siamese(nn.Module):
         self.fc1 = nn.Linear(self.indims, self.h1)
         self.fc2 = nn.Linear(self.h1, self.h2)
         self.fc3 = nn.Linear(self.h2, self.outdims)
+        self.cfunc = combinatorial_func
 
     def learn(self, x, y):
         x, y = to_torch(x), to_torch(y)
@@ -66,7 +66,16 @@ class siamese(nn.Module):
         return self.fc3(fc2)
 
     def combinatorial_func(self, fo, fd):
+        if self.cfunc == 'approximation':
+            return self.approximation_combinatorial_func(fo, fd)
+        if self.cfunc == 'binary':
+            return self.binary_combinatorial_func(fo, fd)
+            
+    def approximation_combinatorial_func(self, fo, fd):
         return fo - fd
+
+    def binary_combinatorial_func(self, fo, fd):
+        return sign(fo - fd)
 
     def predict(self, x):
         x = to_torch(x)

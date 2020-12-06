@@ -35,7 +35,8 @@ class Experiment:
         except:
             pass
         out = {'accuracy': acc, 'training_loss': loss, 'val_loss': val_loss}
-        out['val_vc'] = np.unique(preds, return_counts=True)
+        out['val_vc'] = np.unique(test[1], return_counts=True)
+        out['val_pred_vc'] = np.unique(preds, return_counts=True)
         return out
 
     def save(self, out):
@@ -52,5 +53,7 @@ class Experiment:
 
 if __name__ == "__main__":
     import sys
-    e = Experiment(sys.argv[1])
-    print(e.run())
+    for arg in sys.argv[1:]:
+        print(arg)
+        # e = Experiment(arg)
+        # print(e.run())

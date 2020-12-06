@@ -1,5 +1,5 @@
 # name
-name: siamese
+name: siamese_binary_1205
 
 # data
 data_path: data/data_10p.csv
@@ -9,9 +9,9 @@ tr_perc: 0.8
 
 # model
 model: siamese
-h1: 300
-h2: 50
-lr: 1e-3
+h1: 128
+h2: 128
+lr: 1e-5
 wd: 1e-5
-tr_epochs: 3
+tr_epochs: 5000
 combinatorial_func: binary
