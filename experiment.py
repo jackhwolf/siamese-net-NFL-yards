@@ -55,5 +55,5 @@ if __name__ == "__main__":
     import sys
     for arg in sys.argv[1:]:
         print(arg)
-        # e = Experiment(arg)
-        # print(e.run())
+        e = Experiment(arg)
+        print(e.run())
