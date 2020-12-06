@@ -8,7 +8,7 @@ def to_torch(arr):
 
 class EarlyStopper:
 
-    def __init__(self, patience=10, tolerance=1e-5):
+    def __init__(self, patience=5, tolerance=1e-2):
         self.count = 0
         self.patience = patience
         self.tolerance = tolerance
@@ -25,3 +25,4 @@ class EarlyStopper:
             out = self.count >= self.patience
         self.most_recent_val = val
         return out            
+    

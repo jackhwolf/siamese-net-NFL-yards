@@ -1,6 +1,7 @@
 import yaml
 import pandas as pd
 import os
+import numpy as np
 from sklearn.metrics import accuracy_score
 from dataset import ExperimentData
 import models
@@ -34,6 +35,7 @@ class Experiment:
         except:
             pass
         out = {'accuracy': acc, 'training_loss': loss, 'val_loss': val_loss}
+        out['val_vc'] = np.unique(preds, return_counts=True)
         return out
 
     def save(self, out):
@@ -44,6 +46,7 @@ class Experiment:
             out = pd.concat((data, out))
         else:
             os.makedirs('Results', exist_ok=True)
+        out.index = np.arange(out.shape[0])
         out.to_pickle(path)
         return
 
